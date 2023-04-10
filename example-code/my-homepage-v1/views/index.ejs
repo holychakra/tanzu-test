@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+    crossorigin="anonymous"></script>
+  <title>call api</title>
+
+</head>
+
+<body>
+  <div>
+    <h1>This is homepage </h1>
+    <h3>Check API version </h3>
+    <div style="border: 1; border-color: blue; border-style:double;">
+      <h5>EJS:</h5>
+      <img src="../images/ejs-form.png" alt="" height="100" >
+      <h5>ROUTER:</h5>
+      <img src="../images/router-call.png" alt="" width="400">
+      <p>form, method="get", action= "http://homepage.192.168.237.140.nip.io/call"</p>
+      <p>get "/call" , request url= "http://my-api:5000/"</p>
+      <form method="get" action="http://homepage.192.168.64.128.nip.io/call" enctype="">
+        <input type="submit" value="form action call flask api" id="call">
+      </form>
+      <br>
+    </div>
+    <br>
+    <div style="border: 1; border-color: blue; border-style:double;">
+      <h5>AJAX:</h5>
+      <img src="../images/ajax-post.png" alt="" height="200">
+      <h5>ROUTER:</h5>
+      <img src="../images/router-ajax.png" alt="" width="400">
+      <p>ajax, method="post", url = "http://homepage.192.168.237.140.nip.io/ajax"</p>
+      <p>get "/ajax" , request url = "http://my-api.test-api.svc.cluster.local:5000/"</p>
+      <button id="button" type="button">nodejs ajax call flask api</button>
+
+      <h3>ver:</h3>
+      <div id="version">api_version=</div>
+    </div>
+    <br>
+  </div>
+</body>
+<script>
+  $(document).ready(function () {
+    $('#button').click(function () {
+      const endpoint = "http://homepage.192.168.64.128.nip.io/ajax"
+      // console.log(endpoint)
+      $.ajax({
+        method: "POST",
+        url: endpoint,
+        dataType: "html",
+        success: function (response) {
+          console.log(typeof (response));
+          var ver = document.getElementById("version");
+          ver.textContent = response;
+          $("#version").css({ 'color': 'red', 'font-size': '150%' })
+        },
+        error: function () {
+          alert('server error');
+        }
+      });
+    });
+  });
+
+</script>
+
+</html>
+
